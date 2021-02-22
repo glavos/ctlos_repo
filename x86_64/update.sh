@@ -62,4 +62,3 @@ else
   cp -f ctlos_repo.files.tar.gz ctlos_repo.files
   echo "Done repo-add pkg"
 fi
-
