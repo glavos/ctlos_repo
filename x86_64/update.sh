@@ -33,20 +33,33 @@ if [ "$1" = "-add" ]; then
 echo "Repo Up"
 elif [ "$1" = "-clean" ]; then
   rm ctlos_repo*
-echo "Repo clean"
+  echo "Repo clean"
 elif [ "$1" = "-o" ]; then
   rsync -cauvCLP --delete-excluded --delete "$local_repo"x86_64 "$dest_osdn"
-echo "rsync osdn repo"
+  echo "rsync osdn repo"
 # systemctl --user start kbfs
 elif [ "$1" = "-sync" ]; then
   rsync -cauvCLP --delete-excluded --delete "$local_repo"x86_64 "$dest_osdn"
   rsync -cauvCLP --delete-excluded --delete --exclude={"build",".git*",".*ignore"} "$local_repo"x86_64/ "$dest_keybase"
-echo "rsync all repo"
+  echo "rsync all repo"
 # systemctl --user start kbfs
 elif [ "$1" = "-k" ]; then
   rsync -cauvCLP --delete-excluded --delete --exclude={"build",".git*",".*ignore"} "$local_repo"x86_64/ "$dest_keybase"
-echo "rsync keybase repo"
+  echo "rsync keybase repo"
+elif [ "$1" = "-all" ]; then
+  repo-add -n -R ctlos_repo.db.tar.gz *.pkg.tar.zst
+  rm ctlos_repo.{db,files}
+  cp -f ctlos_repo.db.tar.gz ctlos_repo.db
+  cp -f ctlos_repo.files.tar.gz ctlos_repo.files
+  apindex .
+  rsync -cauvCLP --delete-excluded --delete "$local_repo"x86_64 "$dest_osdn"
+  rsync -cauvCLP --delete-excluded --delete --exclude={"build",".git*",".*ignore"} "$local_repo"x86_64/ "$dest_keybase"
+  echo "add pkg, rsync all repo"
 else
-  echo "No rsync repo"
+  repo-add -n -R ctlos_repo.db.tar.gz *.pkg.tar.zst
+  rm ctlos_repo.{db,files}
+  cp -f ctlos_repo.db.tar.gz ctlos_repo.db
+  cp -f ctlos_repo.files.tar.gz ctlos_repo.files
+  echo "Done repo-add pkg"
 fi
 
