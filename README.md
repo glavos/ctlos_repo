@@ -1,4 +1,4 @@
-# Ctlos Linux repo
+# Glavos Linux repo
 
 ```bash
 #!/bin/bash
