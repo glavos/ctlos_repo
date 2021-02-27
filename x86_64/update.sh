@@ -16,9 +16,9 @@
 # https://cvc.keybase.pub/glavos_repo/x86_64
 # https://glavos.surge.sh
 
-local_repo=/media/files/github/glavos/glavos_repo/
-dest_osdn=creio@storage.osdn.net:/storage/groups/c/ct/glavos/glavos_repo/
-dest_keybase=/run/user/1000/keybase/kbfs/public/cvc/glavos_repo/
+local_repo=/home/sm/GitHub/glavos/glavos_repo/
+# dest_osdn=creio@storage.osdn.net:/storage/groups/c/ct/glavos/glavos_repo/
+# dest_keybase=/run/user/1000/keybase/kbfs/public/cvc/glavos_repo/
 
 if [ "$1" = "-add" ]; then
   # repo-add -s -v -n -R glavos_repo.db.tar.gz *.pkg.tar.xz
